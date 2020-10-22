@@ -6,7 +6,7 @@
 //relative path: src/styles/style.css
 // to index.js from index.html
 //src/index.js
-
+let allCards
 // console.log("js is running")
 document.addEventListener("DOMContentLoaded",()=> {
     console.log("event listener is working")
@@ -16,24 +16,12 @@ document.addEventListener("DOMContentLoaded",()=> {
     })//ends .then
     .then(function(cards){
         //console.log(cards)
-        cards.forEach(card => {renderCard(card)})//ends forEach
+        allCards = cards
+        allCards.forEach(card => {renderCard(card)})//ends forEach
     })//ends.then
     function renderCard(card){
-    //create div element/container to hold a card
-    //create div elements for each card attribute (e.g. name, suit, astrology, etc)
-    //use .append to append those attributes to that original container
-    //use container.innerText = "" to clear
-    //conditionally render the cards
-    //display:block or display:none to hide the cards
-
         console.log("renderCard() is running")
-        // console.log(card)
-        // <div id="card-info">
-        // <div class="image-card">
-        //   <h2 class="title">Title of image goes here</h2>
-        //   <h4 id="arcana">Arcana goes here</h4>
-        //   <img src="./assets/image-placeholder.jpg" class="image" />
-        // </div>
+
         const cardContainer = document.querySelector("#card-summary-container")
         const cardDiv = document.createElement("div")
         cardContainer.append(cardDiv)
@@ -64,27 +52,24 @@ document.addEventListener("DOMContentLoaded",()=> {
              keyWordsUl.style.display= "none"
              meaningsUl.style.display= "none"
              returnBtn.style.display = "none"
-            })        
+            })  
+
         const img = document.createElement("img")
         img.src = `../tarot-frontend/src/styles/images/${card.img}`
         //img.className = "image"
         
         const keyWordsUl = document.createElement("ul")
         keyWordsUl.style.display= "none"
-        //console.log(keyWordsUl)
+        
 
         card.keywords.forEach(keyword => {
-            //console.log(keyword.content)
             const li = document.createElement("li")
-            
-            //console.log(li)
             li.innerText = keyword.content
             keyWordsUl.append(li)
         })
         
         const meaningsUl = document.createElement("ul")
         meaningsUl.style.display= "none"
-        //console.log(card.meanings[0].content)
         card.meanings.forEach(meaning =>{
             const meaningsLi = document.createElement("li")
              meaningsLi.innerText = meaning.content
@@ -104,7 +89,7 @@ document.addEventListener("DOMContentLoaded",()=> {
         // h5.append( br1, br2)
         
         cardDiv.append(h2, img, h5, keyWordsUl, meaningsUl, returnBtn)
-        //cardDiv.append(keyWordsUl, meaningsUl)
+       
         img.addEventListener("click", ()=> {
             console.log("hide event listener is working")
             const hideImg = document.querySelectorAll("img")
@@ -125,9 +110,39 @@ document.addEventListener("DOMContentLoaded",()=> {
              meaningsUl.style.display= "block"
              returnBtn.style.display = "block"
         })//ends h2 event listener
+
+       //button.addEventListener
            
     }//ends function renderCard()
-    // function renderReading(cards){
-    //     var random = cards[Math.floor(Math.random()*cards.length)]
-    // }
+
+    const readingBtn = document.querySelector("#reading")
+    readingBtn.addEventListener("click", ()=> {
+        const hideImg = document.querySelectorAll("img")
+        const hideName = document.querySelectorAll("h2")
+        const hideElemental = document.querySelectorAll(".elemental")
+        hideName.forEach(name =>{
+            name.style.display = "none"
+            })
+        hideImg.forEach(image =>{
+        image.style.display = "none"
+        })
+        hideElemental.forEach(elemental =>{
+            elemental.style.display = "none"
+            })
+
+            let card1 = getRandomCard()
+            let card2 = getRandomCard()
+            let card3 = getRandomCard()
+            renderCard(card1)
+            renderCard(card2)
+            renderCard(card3)
+       //console.log(allCards[getRandomIndex()])
+        //renderCard(allCards[(getRandomIndex())])
+    })
+
+    function getRandomCard(){
+        var random = allCards[Math.floor(Math.random()*allCards.length)] 
+        return random 
+    }
+
 })//ends dom content loaded
