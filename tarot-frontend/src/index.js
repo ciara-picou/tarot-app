@@ -10,6 +10,7 @@ let allCards
 // console.log("js is running")
 document.addEventListener("DOMContentLoaded",()=> {
     console.log("event listener is working")
+  
     fetch("http://localhost:3000/cards")///is this what our localhost is actually called?
     .then(function(res){
         return res.json()
@@ -115,7 +116,9 @@ document.addEventListener("DOMContentLoaded",()=> {
            
     }//ends function renderCard()
 
+    
     const readingBtn = document.querySelector("#reading")
+    //readingBtn.addEventListener("click", ()=> {
     readingBtn.addEventListener("click", ()=> {
         const hideImg = document.querySelectorAll("img")
         const hideName = document.querySelectorAll("h2")
@@ -133,13 +136,79 @@ document.addEventListener("DOMContentLoaded",()=> {
             let card1 = getRandomCard()
             let card2 = getRandomCard()
             let card3 = getRandomCard()
-            renderCard(card1)
-            renderCard(card2)
-            renderCard(card3)
-       //console.log(allCards[getRandomIndex()])
-        //renderCard(allCards[(getRandomIndex())])
-    })
+            renderReadingCard(card1)
+            renderReadingCard(card2)
+            renderReadingCard(card3)
+       
+    })//ends reading button event listener
+    function renderReadingCard(card){
+        console.log("renderReadingCard() is running")
 
+        const cardContainer = document.querySelector("#card-summary-container")
+        const cardDiv = document.createElement("div")
+        cardContainer.append(cardDiv)
+        
+        const h2 = document.createElement("h2")
+        h2.innerText = card.name
+       
+        const returnBtn = document.createElement("button")
+        returnBtn.innerText = "View All Cards"
+        returnBtn.style.display = "none"
+        returnBtn.addEventListener("click", ()=> {
+        console.log("show event listener is working")
+            const showImg = document.querySelectorAll("img")
+            const showName = document.querySelectorAll("h2")
+            const showElemental = document.querySelectorAll(".elemental")
+            showName.forEach(name =>{
+                name.style.display = "block"
+                })
+            showImg.forEach(image =>{
+            image.style.display = "block"
+            
+            })
+            showElemental.forEach(elemental =>{
+                elemental.style.display = "block"
+                })
+            h2.style.display = "none"
+             img.style.display = "none"
+             keyWordsUl.style.display= "none"
+             meaningsUl.style.display= "none"
+             returnBtn.style.display = "none"
+            })  
+
+        const img = document.createElement("img")
+        img.src = `../tarot-frontend/src/styles/images/${card.img}`
+        //img.className = "image"
+        
+        const keyWordsUl = document.createElement("ul")
+        keyWordsUl.style.display= "none"
+        
+
+        card.keywords.forEach(keyword => {
+            const li = document.createElement("li")
+            li.innerText = keyword.content
+            keyWordsUl.append(li)
+        })
+        
+        const meaningsUl = document.createElement("ul")
+        meaningsUl.style.display= "none"
+        card.meanings.forEach(meaning =>{
+            const meaningsLi = document.createElement("li")
+             meaningsLi.innerText = meaning.content
+             meaningsUl.append(meaningsLi)
+        })
+
+        const h5 = document.createElement("h5")
+        h5.innerText = `Elemental: ${card.elemental}`
+        h5.className = "elemental"
+        
+        cardDiv.append(h2, img, h5, keyWordsUl, meaningsUl, returnBtn)
+            h2.style.display = "block"
+             img.style.display = "block"
+             keyWordsUl.style.display= "block"
+             meaningsUl.style.display= "block"
+             returnBtn.style.display = "block"
+    }//ends function render reading card
     function getRandomCard(){
         var random = allCards[Math.floor(Math.random()*allCards.length)] 
         return random 
