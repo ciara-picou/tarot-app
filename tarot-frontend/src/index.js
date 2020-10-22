@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded",()=> {
         h2.innerText = card.name
         
         const img = document.createElement("img")
-        img.src = `styles/images/${card.img}`
-
+        img.src = `../tarot-frontend/src/styles/images/${card.img}`
+        
         const keyWordsUl = document.createElement("ul")
 
         // card.keywords.forEach(keyword => {
