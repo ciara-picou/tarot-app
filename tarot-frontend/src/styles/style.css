@@ -1,0 +1,23 @@
+#card-summary-container {
+    height: 75vh;
+    text-align: center;
+    border-radius: 15px;
+    border-style: 
+
+  }
+  
+  #card-info {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+  
+  .image-card img {
+    max-width: 75vw;
+    max-height: 25vw;
+  }
+  
+  body {
+    margin: 0;
+  }
+  testing 
