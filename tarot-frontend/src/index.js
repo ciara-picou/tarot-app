@@ -8,6 +8,11 @@
 //src/index.js
 
 // console.log("js is running")
+
+const button = document.querySelector('.btn')
+button.addEventListener("click", () =>{
+    console.log("this is a test")
+})
 document.addEventListener("DOMContentLoaded",()=> {
     console.log("event listener is working")
     fetch("http://localhost:3000/cards")///is this what our localhost is actually called?
@@ -34,36 +39,36 @@ document.addEventListener("DOMContentLoaded",()=> {
         //   <h4 id="arcana">Arcana goes here</h4>
         //   <img src="./assets/image-placeholder.jpg" class="image" />
         // </div>
-        const cardContainer = document.querySelector("#card-summary-container")
-        const cardDiv = document.createElement("div")
-        cardContainer.append(cardDiv)
+        // const cardContainer = document.querySelector("#card-summary-container")
+        // const cardDiv = document.createElement("div")
+        // cardContainer.append(cardDiv)
         
-        const h2 = document.createElement("h2")
-        h2.innerText = card.name
+        // const h2 = document.createElement("h2")
+        // h2.innerText = card.name
         
-        const img = document.createElement("img")
-        img.src = `../tarot-frontend/src/styles/images/${card.img}`
+        // const img = document.createElement("img")
+        // img.src = `../tarot-frontend/src/styles/images/${card.img}`
         
-        const keyWordsUl = document.createElement("ul")
+        // const keyWordsUl = document.createElement("ul")
 
-        // card.keywords.forEach(keyword => {
-        //     const li = document.createElement("li")
-        //     li.innerText = keyword
-        //     keyWordsUl.append(li)
-        // })
+        // // card.keywords.forEach(keyword => {
+        // //     const li = document.createElement("li")
+        // //     li.innerText = keyword
+        // //     keyWordsUl.append(li)
+        // // })
         
-        // const meaningsUl = document.createElement("ul")
-        // card.meanings.light.forEach(meaning =>{
-        //     const meaningsLi = document.createElement("li")
-        //      meaningsLi.innerText = meaning
-        //      meaningsUl.append(meaningsLi)
-        // })
+        // // const meaningsUl = document.createElement("ul")
+        // // card.meanings.light.forEach(meaning =>{
+        // //     const meaningsLi = document.createElement("li")
+        // //      meaningsLi.innerText = meaning
+        // //      meaningsUl.append(meaningsLi)
+        // // })
 
-        const h5 = document.createElement("h5")
-        h5.innerText = card.Elemental
+        // const h5 = document.createElement("h5")
+        // h5.innerText = card.Elemental
         
-        cardDiv.append(h2, img, h5)
-        //cardDiv.append(keyWordsUl, meaningsUl)
+        // cardDiv.append(h2, img, h5)
+        // //cardDiv.append(keyWordsUl, meaningsUl)
 
            
     }//ends function renderCard()

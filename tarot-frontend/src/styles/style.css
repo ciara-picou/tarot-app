@@ -1,23 +1,67 @@
-#card-summary-container {
-    height: 75vh;
-    text-align: center;
-    border-radius: 15px;
-    border-style: 
+.body{
+  background-image: url('tarot-frontend/src/styles/history-of-tarot-cards-1.jpg');
+  background-size: cover;
+}
+.btn{
+  border: 1px solid, transparent;
+  border-width: 2px;
+  border-radius: 6px;
+  border-style: solid;
+  font-size: 5vh;
+  border-color: #FBB31B;
+  color: #FBB31B;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding: 10px 16px;
+}
+.btn:hover{
+  border-color: black;
+  color: black;
+}
+.btn:focus{
+  outline:none
+}
 
-  }
+.box{
+  border: 3px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif  
+}
+.description{
+  font-size: 5vh;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-shadow: -1px 0 #FBB31B, 0 1px #FBB31B, 1px 0 #FBB31B, 0 -1px #FBB31B;
+
+}
+h1{
+    text-shadow: -1px 0 #FBB31B, 0 1px #FBB31B, 1px 0 #FBB31B, 0 -1px #FBB31B;
+    font-size: 10vh;
+    font-family: ProximaNova; 
+}
+.header{
+    display: float;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-image: url('history-of-tarot-cards-1.jpg');
+    background-size: cover;
+    justify-content: center;
+    text-align: center;
+    color: white
+}
+
+/* #card-summary-container {
+    height: 75vh;
+    border-radius: 15px
+}
   
-  #card-info {
+#card-info {
     display: flex;
     flex-flow: column;
-    align-items: center;
+    align-items: center
   }
-  
-  .image-card img {
+
+
+.image-card img {
     max-width: 75vw;
-    max-height: 25vw;
-  }
+    max-height: 25vw,
+  } */
   
-  body {
-    margin: 0;
-  }
-  testing 
