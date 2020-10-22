@@ -40,31 +40,94 @@ document.addEventListener("DOMContentLoaded",()=> {
         
         const h2 = document.createElement("h2")
         h2.innerText = card.name
-        
+       
+        const returnBtn = document.createElement("button")
+        returnBtn.innerText = "Take Me Back To The Cards"
+        returnBtn.style.display = "none"
+        returnBtn.addEventListener("click", ()=> {
+        console.log("show event listener is working")
+            const showImg = document.querySelectorAll("img")
+            const showName = document.querySelectorAll("h2")
+            const showElemental = document.querySelectorAll(".elemental")
+            showName.forEach(name =>{
+                name.style.display = "block"
+                })
+            showImg.forEach(image =>{
+            image.style.display = "block"
+            
+            })
+            showElemental.forEach(elemental =>{
+                elemental.style.display = "block"
+                })
+            h2.style.display = "none"
+             img.style.display = "none"
+             keyWordsUl.style.display= "none"
+             meaningsUl.style.display= "none"
+             returnBtn.style.display = "none"
+            })        
         const img = document.createElement("img")
         img.src = `../tarot-frontend/src/styles/images/${card.img}`
+        //img.className = "image"
         
         const keyWordsUl = document.createElement("ul")
+        keyWordsUl.style.display= "none"
+        //console.log(keyWordsUl)
 
-        // card.keywords.forEach(keyword => {
-        //     const li = document.createElement("li")
-        //     li.innerText = keyword
-        //     keyWordsUl.append(li)
-        // })
+        card.keywords.forEach(keyword => {
+            //console.log(keyword.content)
+            const li = document.createElement("li")
+            
+            //console.log(li)
+            li.innerText = keyword.content
+            keyWordsUl.append(li)
+        })
         
-        // const meaningsUl = document.createElement("ul")
-        // card.meanings.light.forEach(meaning =>{
-        //     const meaningsLi = document.createElement("li")
-        //      meaningsLi.innerText = meaning
-        //      meaningsUl.append(meaningsLi)
-        // })
+        const meaningsUl = document.createElement("ul")
+        meaningsUl.style.display= "none"
+        //console.log(card.meanings[0].content)
+        card.meanings.forEach(meaning =>{
+            const meaningsLi = document.createElement("li")
+             meaningsLi.innerText = meaning.content
+             meaningsUl.append(meaningsLi)
+        })
 
         const h5 = document.createElement("h5")
-        h5.innerText = card.Elemental
+        h5.innerText = `Elemental: ${card.elemental}`
+        h5.className = "elemental"
+        // if (card.elemental == "null"){
+        //     h5.innerText = " "
+        // }else{
+        //     h5.innerText = `Elemental: ${card.elemental}`
+        // }
+        // const br1 = document.createElement("br")
+        // const br2 = document.createElement("br")
+        // h5.append( br1, br2)
         
-        cardDiv.append(h2, img, h5)
+        cardDiv.append(h2, img, h5, keyWordsUl, meaningsUl, returnBtn)
         //cardDiv.append(keyWordsUl, meaningsUl)
-
+        img.addEventListener("click", ()=> {
+            console.log("hide event listener is working")
+            const hideImg = document.querySelectorAll("img")
+            const hideName = document.querySelectorAll("h2")
+            const hideElemental = document.querySelectorAll(".elemental")
+            hideName.forEach(name =>{
+                name.style.display = "none"
+                })
+            hideImg.forEach(image =>{
+            image.style.display = "none"
+            })
+            hideElemental.forEach(elemental =>{
+                elemental.style.display = "none"
+                })
+            h2.style.display = "block"
+             img.style.display = "block"
+             keyWordsUl.style.display= "block"
+             meaningsUl.style.display= "block"
+             returnBtn.style.display = "block"
+        })//ends h2 event listener
            
     }//ends function renderCard()
+    // function renderReading(cards){
+    //     var random = cards[Math.floor(Math.random()*cards.length)]
+    // }
 })//ends dom content loaded
