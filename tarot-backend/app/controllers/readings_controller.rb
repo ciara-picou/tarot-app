@@ -6,12 +6,13 @@ class ReadingsController < ApplicationController
     end
 
     def new
-        reading = reading.new
+        reading = Reading.new
         render json: readings
     end
 
     def create
-        reading = Reading.create
+        reading = Reading.create(card1: reading_params[:card1], card2: reading_params[:card2], card3: reading_params[:card3], comment: reading_params[:comment])
+        
         render json: reading
     end
 
@@ -35,9 +36,9 @@ class ReadingsController < ApplicationController
 private
   def reading_params
     #byebug
-    params.require(:reading).permit(:card1,:card2,:card3, :comments)
+    params.require(:reading).permit(:card1,:card2,:card3, :comment)
+    
   end
-
 end
 
 # def new
