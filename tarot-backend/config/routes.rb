@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 resources :cards
 resources :meanings
 resources :keywords
+resources :readings
+resources :card_readings
 end

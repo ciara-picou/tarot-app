@@ -7,6 +7,9 @@
 // to index.js from index.html
 //src/index.js
 let allCards
+let card1
+let card2
+let card3
 // console.log("js is running")
 document.addEventListener("DOMContentLoaded",()=> {
     console.log("event listener is working")
@@ -120,6 +123,7 @@ document.addEventListener("DOMContentLoaded",()=> {
     const readingBtn = document.querySelector("#reading")
     //readingBtn.addEventListener("click", ()=> {
     readingBtn.addEventListener("click", ()=> {
+        readingBtn.style.display = "none"
         const hideImg = document.querySelectorAll("img")
         const hideName = document.querySelectorAll("h2")
         const hideElemental = document.querySelectorAll(".elemental")
@@ -133,12 +137,13 @@ document.addEventListener("DOMContentLoaded",()=> {
             elemental.style.display = "none"
             })
 
-            let card1 = getRandomCard()
-            let card2 = getRandomCard()
-            let card3 = getRandomCard()
+             card1 = getRandomCard()
+             card2 = getRandomCard()
+             card3 = getRandomCard()
             renderReadingCard(card1)
             renderReadingCard(card2)
             renderReadingCard(card3)
+          
        
     })//ends reading button event listener
     function renderReadingCard(card){
@@ -150,10 +155,12 @@ document.addEventListener("DOMContentLoaded",()=> {
         
         const h2 = document.createElement("h2")
         h2.innerText = card.name
-       
+
         const returnBtn = document.createElement("button")
         returnBtn.innerText = "View All Cards"
         returnBtn.style.display = "none"
+       
+      
         returnBtn.addEventListener("click", ()=> {
         console.log("show event listener is working")
             const showImg = document.querySelectorAll("img")
