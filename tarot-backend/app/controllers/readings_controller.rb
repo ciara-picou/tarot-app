@@ -14,12 +14,30 @@ class ReadingsController < ApplicationController
         reading = Reading.create
         render json: reading
     end
-# private
-#   def reading_params
-#     #byebug
-#     params.require(:reading).permit(:card1,:card2,:card3, :comments)
-#   end
-# end
+
+    # def edit
+    #     @trail_list = TrailList.find(params[:id])
+    #     @trails = Trail.all
+    # end
+
+
+    def update
+        reading = Reading.find(params[:id])
+        reading.update(reading_params)
+        render json: reading
+    end
+
+    def destroy
+        reading = Reading.find(params[:id])
+        reading.destroy
+        render json: reading
+    end
+private
+  def reading_params
+    #byebug
+    params.require(:reading).permit(:card1,:card2,:card3, :comments)
+  end
+
 end
 
 # def new

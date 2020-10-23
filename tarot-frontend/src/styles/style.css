@@ -15,8 +15,8 @@ button{
     border-style: solid;
     color: #FBB31B;
     font-family: 'Roboto', sans-serif;
-    font-size: 4vh;
-    padding: 10px 16px;
+    font-size: 3vh;
+    padding: 15px 15px 15px 15px;
   }
 button:hover{
     opacity: 0.6
@@ -24,12 +24,19 @@ button:hover{
 button:focus{
     outline:none
   }
+.card-summary-container {
+  color: black;
+  background-color: #FBB31B;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
+}
 #card-info {
     align-items: center;
-    display: flex;
+    display: inline-block;
     flex-flow: column;
   } 
 #card-summary-container {
+    display: inline-block;
     border-radius: 15px;
     height: 75vh;
     text-align: center;
@@ -70,6 +77,10 @@ h2{
 .image-card img {
     max-height: 25vw;
     max-width: 75vw;
+  }
+.image-container {
+    display: inline-block;
+    margin: 5px;
   }
 .pagetitle{
     color: black;

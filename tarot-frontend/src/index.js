@@ -1,5 +1,5 @@
 let allCards
-
+let deleteBtn
 let card1
 let card2
 let card3
@@ -13,9 +13,11 @@ document.addEventListener("DOMContentLoaded",()=> {
         allCards = cards
         allCards.forEach(card => {renderCard(card)})//ends forEach
     })//ends.then
+    
     function renderCard(card){
         const cardContainer = document.querySelector("#card-summary-container")
         const cardDiv = document.createElement("div")
+        cardDiv.className = "card-container"
         cardContainer.append(cardDiv)
         
         const h2 = document.createElement("h2")
@@ -45,12 +47,13 @@ document.addEventListener("DOMContentLoaded",()=> {
         const img = document.createElement("img")
         img.src = `../tarot-frontend/src/styles/images/${card.img}`
         
-        
+       
         const keyWordsUl = document.createElement("ul")
         keyWordsUl.style= "list-style-type:none;"
         keyWordsUl.style.display= "none"
         card.keywords.forEach(keyword => {
             const li = document.createElement("li")
+            li.className = "list-items"
             li.innerText = keyword.content
             keyWordsUl.append(li)
         })  
@@ -60,6 +63,7 @@ document.addEventListener("DOMContentLoaded",()=> {
         card.meanings.forEach(meaning =>{
             const meaningsLi = document.createElement("li")
              meaningsLi.innerText = meaning.content
+             meaningsLi.className= "list-items"
              meaningsUl.append(meaningsLi)
         })
         
@@ -113,6 +117,14 @@ document.addEventListener("DOMContentLoaded",()=> {
         const cardContainer = document.querySelector("#card-summary-container")
         const cardDiv = document.createElement("div")
         cardContainer.append(cardDiv)
+        const readingP1 = document.createElement("p")
+        const readingP2 = document.createElement("p")
+        const readingP3 = document.createElement("p")
+        readingP1.innerHTML = "The first card represents the light of the situation or what aspect needs to be focused on."
+        readingP2.innerHTML = "The second card represents the shadow of the situation or what hidden forces are causing the situation." 
+        readingP3.innerHTML = "The third card represents the course of action which the situation requires."
+        cardDiv.append(readingP1, readingP2, readingP3)
+        //readingInstructions()
         const postButton = document.createElement("button")
          postButton.innerText = "Save This Reading"
         cardDiv.append(postButton)
@@ -134,14 +146,28 @@ document.addEventListener("DOMContentLoaded",()=> {
             fetch("http://localhost:3000/readings", postObject )
             .then(res => res.json())
             .then(readingObject => {
-                const h3 =document.createElement("h3")
-                h3.innerText = `Reading number ${readingObject.id}`
+                console.log(readingObject)
+                const readingH3 =document.createElement("h3")
+                //readingH3.innerText = `Reading number ${readingObject.id} has been saved`
+                readingH3.innerText = `Your reading has been successfully saved!`
+
+                //delete button is defined as a global variable at top of this file 
+                //but I still get this error:
+                //index.js:146 Uncaught (in promise) ReferenceError: deletBtn is not defined
+                deleteBtn = document.createElement("button")
+                deleteBtn.innerText= "X"
+                postButton.style.display = "none"
                 h2.style.display="none"
                 img.style.display="none"
                 keyWordsUl.style.display="none"
                 meaningsUl.style.display="none"
+                //the ABOVE CODE IS NOT HIDING THE ELEMENTS PROPERLY
+                cardDiv.append(readingH3)
+                readingH3.append(deletBtn)
                 
-                cardDiv.append(h3)
+                readingH3.addEventListener("click", ()=> {
+                    console.log("this is a test!!!")
+                })//end h3 event listener
             })
         
         })//ends POST eventListener
@@ -162,6 +188,7 @@ document.addEventListener("DOMContentLoaded",()=> {
             showImg.forEach(image =>{
             image.style.display = "block"
             })
+             postButton.style.display = "none"
              h2.style.display = "none"
              img.style.display = "none"
              keyWordsUl.style.display= "none"
@@ -202,8 +229,43 @@ document.addEventListener("DOMContentLoaded",()=> {
         let random = allCards[Math.floor(Math.random()*allCards.length)] 
         return random 
     }
-
+   
+    
 })//ends dom content loaded
+
+//deleteBtn.addEventListener("click", ()=> {
+
+//fetch(`http://localhost:3000/${readings.id}`,{
+    // method: "DELETE"
+//})//ends delete fetch
+//.then(res=> res.json())
+//.then(res => readingH3)
+//})//ends delete event listener
+
+
+//where to create the textarea??
+// textAreaBtn.addEventListener("submit", (e)=> {
+//     e.preventDefault()
+//     comment = document.querySelector('textarea').value
+//     fetch(`http://localhost:3000/${readings.id}`,{
+//         method: "PATCH",
+//         headers:{
+//          "Content-Type": "application/json",
+//          "Accept": "application/json"
+//         },
+//         body: JSON.stringify({
+//             comment: comment
+//         })
+//     })//ends PATCH fetch
+//     .then(res => res.json())
+//     .then(idk => {console.log(idk)})
+//     //probably create a p with innerText comment and append p to something
+// })//ends textAreaBtn event listener
+
+
+
+
+
 // IF WE DECIDE POST TO CARDREADINGS
 // let postObject = {
 //     method: "POST",
@@ -227,3 +289,14 @@ document.addEventListener("DOMContentLoaded",()=> {
 //     //console.log(Reading.all)
 //     console.log(card.cardreadings)
 // })
+
+// function readingInstructions(){
+//     const cardDiv = document.createElement("div")
+//     const readingP1 = document.createElement("p")
+//     const readingP2 = document.createElement("p")
+//     const readingP3 = document.createElement("p")
+//     readingP1.innerHTML = "The first card represents the light of the situation or what aspect needs to be focused on."
+//     readingP2.innerHTML = "The second card represents the shadow of the situation or what hidden forces are causing the situation." 
+//     readingP3.innerHTML = "The third card represents the course of action which the situation requires."
+//     cardDiv.append(readingP1, readingP2, readingP3)
+// }//end readingInstructions
