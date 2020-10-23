@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded",()=> {
     function renderCard(card){
         const cardContainer = document.querySelector("#card-summary-container")
         const cardDiv = document.createElement("div")
-        cardDiv.className = "card-container"
+        cardDiv.className = "tarot-card"
         cardContainer.append(cardDiv)
         
         const h2 = document.createElement("h2")
@@ -116,6 +116,7 @@ document.addEventListener("DOMContentLoaded",()=> {
     function renderReadingCard(card){
         const cardContainer = document.querySelector("#card-summary-container")
         const cardDiv = document.createElement("div")
+        cardDiv.className = "tarot-card"
         cardContainer.append(cardDiv)
         const readingP1 = document.createElement("p")
         const readingP2 = document.createElement("p")
@@ -163,7 +164,7 @@ document.addEventListener("DOMContentLoaded",()=> {
                 meaningsUl.style.display="none"
                 //the ABOVE CODE IS NOT HIDING THE ELEMENTS PROPERLY
                 cardDiv.append(readingH3)
-                readingH3.append(deletBtn)
+                readingH3.append(deleteBtn)
                 
                 readingH3.addEventListener("click", ()=> {
                     console.log("this is a test!!!")

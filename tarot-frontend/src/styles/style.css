@@ -90,3 +90,10 @@ span.psw {
     padding-top: 0;
     padding-right: 15px;
   }
+.tarot-card{
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+}
+.tarot-card:hover{
+  opacity: 0.6;
+}
