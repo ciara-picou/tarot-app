@@ -91,8 +91,7 @@ document.addEventListener("DOMContentLoaded",()=> {
     }//ends function renderCard()
 
     
-    const readingBtn = document.querySelector("#reading")
-
+    const readingBtn = document.querySelector("#get-reading")
     readingBtn.addEventListener("click", ()=> {
         readingBtn.style.display = "none"
         const hideImg = document.querySelectorAll("img")
@@ -102,30 +101,96 @@ document.addEventListener("DOMContentLoaded",()=> {
             name.style.display = "none"
             })
         hideImg.forEach(image => {
-        image.style.display = "none"
-        })
+            image.style.display = "none"
+            })
              card1 = getRandomCard()
              card2 = getRandomCard()
              card3 = getRandomCard()
             renderReadingCard(card1)
             renderReadingCard(card2)
             renderReadingCard(card3)
-          
        
     })//ends reading button event listener
     function renderReadingCard(card){
         const cardContainer = document.querySelector("#card-summary-container")
         const cardDiv = document.createElement("div")
-        cardDiv.className = "tarot-card"
+        cardDiv.className = "tarot-card-reading"
         cardContainer.append(cardDiv)
+
         const readingP1 = document.createElement("p")
         const readingP2 = document.createElement("p")
         const readingP3 = document.createElement("p")
-        readingP1.innerHTML = "The first card represents the light of the situation or what aspect needs to be focused on."
-        readingP2.innerHTML = "The second card represents the shadow of the situation or what hidden forces are causing the situation." 
-        readingP3.innerHTML = "The third card represents the course of action which the situation requires."
-        cardDiv.append(readingP1, readingP2, readingP3)
-        //readingInstructions()
+        readingP1.innerHTML = "First card: What aspect of the situation requires the most focus?"
+        readingP2.innerHTML = "Second card: What hidden forces are influencing or causing the situation?"
+        readingP3.innerHTML = "Third card: What course of action is recommended?" 
+ 
+        const commentReadingH3= document.createElement("h3")
+        commentReadingH3.innerText = "Leave Comment"
+    //     <form class="description">
+    //     <textarea>Beer description goes here</textarea>
+    //     <button>Update Beer</button>
+    //   </form>
+        
+        
+        const form = document.createElement("form")
+        form.className = "comment-form"
+        
+        const textarea = document.createElement("textarea")
+        textarea.innerText = "Enter your thoughts about this reading"
+        textarea.className = "new-comment"
+        //const input = document.createElement("input")
+        //input.type = "submit"
+        //input.value = "Submit"
+        //input.id ="comment-button"
+        const commentButton= document.createElement("button")
+        commentButton.className = "button"
+        commentButton.innerText = "Leave Comment"
+        const br1 = document.createElement("br")
+        const br2 = document.createElement("br")
+        const br3 = document.createElement("br")
+        //cardDiv.append(readingP1, readingP2, readingP3, form)
+        cardDiv.append(readingP1, readingP2, readingP3, commentReadingH3, form, textarea, br1, br2, br3, commentButton)
+        
+        commentButton.addEventListener("click", (e) => {
+         e.preventDefault()
+         console.log("I've been clicked")
+         //console.log(readings)
+        
+        let comment = document.querySelector('textarea').value
+            
+            // let patchOption = {
+            //     method: "PATCH",
+            //     headers: {
+            //         "Content-Type": 'application/json',
+            //         "Accept": 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         comment: comment
+            //     })
+            // }
+        
+            fetch(`http://localhost:3000/readings/50`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                },
+                body: JSON.stringify({
+                    comment: comment
+                })
+            })
+            .then(response => response.json())
+            .then(comment => console.log(comment))
+         })
+        
+        
+        
+        // form.addEventListener("submit", (e)=>{
+        //     e.preventDefault()
+        //     console.log("I've been clicked")
+        // })
+        
+        
         const postButton = document.createElement("button")
          postButton.innerText = "Save This Reading"
         cardDiv.append(postButton)
@@ -147,7 +212,7 @@ document.addEventListener("DOMContentLoaded",()=> {
             fetch("http://localhost:3000/readings", postObject )
             .then(res => res.json())
             .then(readingObject => {
-                console.log(readingObject)
+                console.log(readingObject.id)
                 const readingH3 =document.createElement("h3")
                 //readingH3.innerText = `Reading number ${readingObject.id} has been saved`
                 readingH3.innerText = `Your reading has been successfully saved!`
@@ -156,7 +221,7 @@ document.addEventListener("DOMContentLoaded",()=> {
                 //but I still get this error:
                 //index.js:146 Uncaught (in promise) ReferenceError: deletBtn is not defined
                 deleteBtn = document.createElement("button")
-                deleteBtn.innerText= "X"
+                deleteBtn.innerText= "Delete Reading"
                 postButton.style.display = "none"
                 h2.style.display="none"
                 img.style.display="none"
@@ -165,6 +230,14 @@ document.addEventListener("DOMContentLoaded",()=> {
                 //the ABOVE CODE IS NOT HIDING THE ELEMENTS PROPERLY
                 cardDiv.append(readingH3)
                 readingH3.append(deleteBtn)
+                deleteBtn.addEventListener("click", ()=> {
+
+                fetch(`http://localhost:3000/readings/${readingObject.id}`,{
+                     method: "DELETE"
+                })//ends delete fetch
+                .then(res=> res.json())
+                .then(res => readingH3.remove())
+                })//ends delete event listener
                 
                 readingH3.addEventListener("click", ()=> {
                     console.log("this is a test!!!")
@@ -301,3 +374,5 @@ document.addEventListener("DOMContentLoaded",()=> {
 //     readingP3.innerHTML = "The third card represents the course of action which the situation requires."
 //     cardDiv.append(readingP1, readingP2, readingP3)
 // }//end readingInstructions
+
+  

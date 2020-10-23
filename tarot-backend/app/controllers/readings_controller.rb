@@ -52,6 +52,12 @@ end
 #     redirect_to hike_path(@hike)
 #   end
 
+  # def update
+    #     @trail_list = TrailList.find(params[:id])
+    #     @trail.update(trail_list_params)
+    #     redirect_to trail_lists_path
+    # end
+
 # private
   
 #   def hike_params

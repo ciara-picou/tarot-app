@@ -19,19 +19,7 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module TarotApp
-  class Application < Rails::Application
 
-    # ...
-
-    config.middleware.insert_before 0, "Rack::Cors" do
-      allow do
-        origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
-      end
-    end
-  end
-end
 
 module TarotBackend
   class Application < Rails::Application

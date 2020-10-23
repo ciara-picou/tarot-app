@@ -35,25 +35,43 @@ button:focus{
     display: inline-block;
     flex-flow: column;
   } 
+#comment-button{
+    background: none;
+    border: 1px solid, transparent;
+    border-color: #FBB31B;
+    border-width: 2px;
+    border-radius: 6px;
+    border-style: solid;
+    color: #FBB31B;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vh;
+    padding: 15px 15px 15px 15px;
+}
+#comment-button:hover{
+  opacity: 0.6;
+}
+#comment-button:focus{
+  outline:none;
+}
 #card-summary-container {
-    display: inline-block;
+    display: block;
     border-radius: 15px;
     height: 75vh;
     text-align: center;
   }
-.container {
+/* .container {
     padding: 16px 0;
-    text-align:left;
-  }
+    text-align:center;
+  } */
 .description{
     font-size: 5vh;
     font-family:'Roboto', sans-serif;
     text-shadow: -1px 0 #FBB31B, 0 1px #FBB31B, 1px 0 #FBB31B, 0 -1px #FBB31B;
   }
-.formcontainer {
+/* .formcontainer {
     margin: 24px 50px 12px;
-    text-align: left;
-  }
+    text-align: center;
+  } */
 h1{
     font-family: 'Roboto', sans-serif;
     font-size: 10vh;
@@ -90,8 +108,15 @@ span.psw {
     padding-top: 0;
     padding-right: 15px;
   }
+.tarot-card-reading{
+  display: block;
+  position: center;
+  margin: 10px;
+  font-family: 'Roboto', sans-serif;
+}
 .tarot-card{
   display: inline-block;
+  margin: 10px;
   font-family: 'Roboto', sans-serif;
 }
 .tarot-card:hover{
