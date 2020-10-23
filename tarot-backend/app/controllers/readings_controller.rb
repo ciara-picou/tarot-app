@@ -14,6 +14,12 @@ class ReadingsController < ApplicationController
         reading = Reading.create
         render json: reading
     end
+# private
+#   def reading_params
+#     #byebug
+#     params.require(:reading).permit(:card1,:card2,:card3, :comments)
+#   end
+# end
 end
 
 # def new
