@@ -96,6 +96,7 @@ h2{
     max-height: 25vw;
     max-width: 75vw;
   }
+
 .image-container {
     display: inline-block;
     margin: 5px;
@@ -110,9 +111,8 @@ span.psw {
   }
 .tarot-card-reading{
   display: block;
-  position: center;
-  margin: 10px;
-  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  /* font-family: 'Roboto', sans-serif; */
 }
 .tarot-card{
   display: inline-block;
